@@ -1,0 +1,262 @@
+PACIENTE
+
+Retorna o paciente especificado
+
+GET: http://localhost:8080/paciente/1
+
+Retorna:
+{
+    "id": 1,
+    "nome": "Leonardo Hamato",
+    "dataNascimento": "1984-05-15",
+    "documento": "12345678901",
+    "codEndereco": 1,
+    "codContato": 1
+}
+
+
+--------------------------------------
+
+Criar um paciente
+
+POST: http://localhost:8080/paciente
+
+BODY:
+{
+    "nome": "Casey Jones",
+    "dataNascimento": "1990-05-15",
+    "documento": "62816116084",
+    "codEndereco": 3,
+    "codContato": 3
+}
+
+Retorna:
+{
+	"id": 22,
+	"nome": "Casey Jones",
+	"dataNascimento": "1990-05-15",
+	"documento": "62816116084",
+	"codEndereco": 3,
+	"codContato": 3
+}
+
+Caso de ERRO:
+
+400 - Bad Request
+{
+	"title": "Constraint Violation",
+	"status": 400,
+	"violations": [
+		{
+			"field": "save.paciente.dataNascimento",
+			"message": "deve ser uma data passada"
+		},
+		{
+			"field": "save.paciente.nome",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.paciente.documento",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+
+
+--------------------------------------
+
+Atualiza um paciente
+
+PUT: http://localhost:8080/paciente/1
+
+BODY:
+{
+    "nome": "Casey Jones",
+    "dataNascimento": "1990-05-15",
+    "documento": "62816116084",
+    "codEndereco": 3,
+    "codContato": 3
+}
+
+Retorna:
+{
+	"id": 22,
+	"nome": "Casey Jones",
+	"dataNascimento": "1990-05-15",
+	"documento": "62816116084",
+	"codEndereco": 3,
+	"codContato": 3
+}
+
+Caso de ERRO:
+
+400 - Bad Request
+{
+	"title": "Constraint Violation",
+	"status": 400,
+	"violations": [
+		{
+			"field": "save.paciente.dataNascimento",
+			"message": "deve ser uma data passada"
+		},
+		{
+			"field": "save.paciente.nome",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.paciente.documento",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+
+
+
+--------------------------------------
+
+Deleta um paciente
+
+DELETE: http://localhost:8080/paciente/1
+
+Retorno: 204 - No Content
+
+-------------------------------------------------------
+
+CONTATO
+
+Retorna o contato especificado
+
+GET: http://localhost:8080/contato/1
+
+Retorna:
+{
+    "id": 1,
+    "email": "leonardo.Hamato@tmnt.com",
+    "telefone": "11912344321"
+}
+
+
+--------------------------------------
+
+Cria um contato
+
+POST: http://localhost:8080/contato
+
+BODY:
+{
+    "email": "leonardo.Hamato@tmnt.com",
+    "telefone": "11912344321"
+}
+
+Retorna:
+{
+    "id": 1,
+    "email": "leonardo.Hamato@tmnt.com",
+    "telefone": "11912344321"
+}
+
+
+--------------------------------------
+
+Atualiza contato
+
+PUT: http://localhost:8080/contato/1
+
+BODY:
+{
+    "email": "leonardo.Hamato@tmnt.com",
+    "telefone": "11912344321"
+}
+
+Retorna:
+{
+    "id": 1,
+    "email": "leonardo.Hamato@tmnt.com",
+    "telefone": "11912344321"
+}
+
+
+
+-------------------------------------------------------
+
+ENDEREÇO
+
+Retorna o endereço especificado
+
+GET: http://localhost:8080/endereco/1
+
+Retorna:
+{
+    "id": 1,
+    "logradouro": "Rua da Consolação",
+    "numero": "1500",
+    "complemento": "Apartamento 1A",
+    "bairro": "Consolação",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01302-000"
+}
+
+
+--------------------------------------
+
+Cria um endereco
+
+POST: http://localhost:8080/endereco
+
+BODY:
+{
+    "logradouro": "Rua da Consolação",
+    "numero": "1500",
+    "complemento": "Apartamento 1A",
+    "bairro": "Consolação",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01302-000"
+}
+
+
+Retorna:
+{
+    "id": 1,
+    "logradouro": "Rua da Consolação",
+    "numero": "1500",
+    "complemento": "Apartamento 1A",
+    "bairro": "Consolação",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01302-000"
+}
+
+
+
+--------------------------------------
+
+Atualiza endereço
+
+PUT: http://localhost:8080/endereco/1
+
+BODY:
+{
+    "logradouro": "Rua da Consolação",
+    "numero": "1500",
+    "complemento": "Apartamento 1A",
+    "bairro": "Consolação",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01302-000"
+}
+
+
+Retorna:
+{
+    "id": 1,
+    "logradouro": "Rua da Consolação",
+    "numero": "1500",
+    "complemento": "Apartamento 1A",
+    "bairro": "Consolação",
+    "cidade": "São Paulo",
+    "estado": "SP",
+    "cep": "01302-000"
+}
+

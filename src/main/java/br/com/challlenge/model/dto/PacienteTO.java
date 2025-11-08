@@ -1,22 +1,38 @@
 package br.com.challlenge.model.dto;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.Past;
+
 import java.time.LocalDate;
 
 public class PacienteTO {
+    private Long id;
+    @NotBlank
     private String nome;
+    @Past
     private LocalDate dataNascimento;
+    @NotBlank
     private String documento;
-    private EnderecoTO endereco;
-    private ContatoTO contato;
+    private Long codEndereco;
+    private Long codContato;
 
     public PacienteTO() {}
 
-    public PacienteTO(String nome, LocalDate dataNascimento, String documento, EnderecoTO endereco, ContatoTO contato) {
+    public PacienteTO(Long id, String nome, LocalDate dataNascimento, String documento, Long codEndereco, Long codContato) {
+        this.id = id;
         this.nome = nome;
         this.dataNascimento = dataNascimento;
         this.documento = documento;
-        this.endereco = endereco;
-        this.contato = contato;
+        this.codEndereco = codEndereco;
+        this.codContato = codContato;
+    }
+
+    public Long getId() {
+        return id;
+    }
+
+    public void setId(Long id) {
+        this.id = id;
     }
 
     public String getNome() {
@@ -43,20 +59,20 @@ public class PacienteTO {
         this.documento = documento;
     }
 
-    public EnderecoTO getEndereco() {
-        return endereco;
+    public Long getCodEndereco() {
+        return codEndereco;
     }
 
-    public void setEndereco(EnderecoTO endereco) {
-        this.endereco = endereco;
+    public void setCodEndereco(Long codEndereco) {
+        this.codEndereco = codEndereco;
     }
 
-    public ContatoTO getContato() {
-        return contato;
+    public Long getCodContato() {
+        return codContato;
     }
 
-    public void setContato(ContatoTO contato) {
-        this.contato = contato;
+    public void setCodContato(Long codContato) {
+        this.codContato = codContato;
     }
 }
 
