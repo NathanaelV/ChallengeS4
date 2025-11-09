@@ -2,7 +2,6 @@ package br.com.challlenge.model.resource;
 
 import br.com.challlenge.model.bo.EnderecoBO;
 import br.com.challlenge.model.dto.EnderecoTO;
-import br.com.challlenge.model.dto.EnderecoTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;

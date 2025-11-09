@@ -5,8 +5,39 @@ import br.com.challlenge.model.dto.ContatoTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class ContatoDAO {
+    public ArrayList<ContatoTO> findAll() {
+        ArrayList<ContatoTO> contatos = new ArrayList<>();
+
+        String sql = "select * from t_vlt_ddd_contato order by codigo";
+
+        try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    ContatoTO contato = new ContatoTO();
+                    contato.setId(rs.getLong("codigo"));
+                    contato.setEmail(rs.getString("email"));
+                    contato.setTelefone(rs.getString("telefone"));
+                    contatos.add(contato);
+                }
+
+                return contatos;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na consulta: " + e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection();
+        }
+
+        return contatos;
+    }
+    
     public ContatoTO save(ContatoTO contato) {
         String sql = "insert into t_vlt_ddd_contato (email, telefone) VALUES (?,?)";
 

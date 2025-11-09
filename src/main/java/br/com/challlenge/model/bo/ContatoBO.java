@@ -3,8 +3,15 @@ package br.com.challlenge.model.bo;
 import br.com.challlenge.model.dao.ContatoDAO;
 import br.com.challlenge.model.dto.ContatoTO;
 
+import java.util.ArrayList;
+
 public class ContatoBO {
     private ContatoDAO contatoDAO;
+
+    public ArrayList<ContatoTO> findAll() {
+        contatoDAO = new ContatoDAO();
+        return contatoDAO.findAll();
+    }
 
     public ContatoTO save(ContatoTO contato) {
         contatoDAO = new ContatoDAO();

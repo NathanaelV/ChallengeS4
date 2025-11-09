@@ -7,9 +7,27 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.ArrayList;
+
 @Path("/contato")
 public class ContatoResource {
     private ContatoBO contatoBO = new ContatoBO();
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+        ArrayList<ContatoTO> resultado = contatoBO.findAll();
+        Response.ResponseBuilder response;
+
+        if (resultado != null) {
+            response = Response.ok();
+        } else {
+            response = Response.status(404);
+        }
+
+        response.entity(resultado);
+        return response.build();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
