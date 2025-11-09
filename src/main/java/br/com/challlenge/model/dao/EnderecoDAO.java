@@ -5,8 +5,44 @@ import br.com.challlenge.model.dto.EnderecoTO;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class EnderecoDAO {
+    public ArrayList<EnderecoTO> findAll() {
+        ArrayList<EnderecoTO> enderecos = new ArrayList<>();
+
+        String sql = "select * from t_vlt_ddd_endereco order by codigo";
+
+        try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    EnderecoTO endereco = new EnderecoTO();
+                    endereco.setId(rs.getLong("codigo"));
+                    endereco.setLogradouro(rs.getString("logradouro"));
+                    endereco.setNumero(rs.getString("numero"));
+                    endereco.setComplemento(rs.getString("complemento"));
+                    endereco.setBairro(rs.getString("bairro"));
+                    endereco.setCidade(rs.getString("cidade"));
+                    endereco.setEstado(rs.getString("estado"));
+                    endereco.setCep(rs.getString("cep"));
+                    enderecos.add(endereco);
+                }
+
+                return enderecos;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na consulta: " + e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection();
+        }
+
+        return enderecos;
+    }
+    
     public EnderecoTO save(EnderecoTO endereco) {
         String sql = "INSERT INTO t_vlt_ddd_endereco (logradouro, numero, complemento, bairro, cidade, estado, cep) VALUES (?, ?, ?, ?, ?, ?, ?)";
 

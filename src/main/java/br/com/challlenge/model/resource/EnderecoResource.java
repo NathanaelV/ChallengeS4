@@ -2,14 +2,33 @@ package br.com.challlenge.model.resource;
 
 import br.com.challlenge.model.bo.EnderecoBO;
 import br.com.challlenge.model.dto.EnderecoTO;
+import br.com.challlenge.model.dto.EnderecoTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.ArrayList;
+
 @Path("/endereco")
 public class EnderecoResource {
     private EnderecoBO enderecoBO = new EnderecoBO();
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+        ArrayList<EnderecoTO> resultado = enderecoBO.findAll();
+        Response.ResponseBuilder response;
+
+        if (resultado != null) {
+            response = Response.ok();
+        } else {
+            response = Response.status(404);
+        }
+
+        response.entity(resultado);
+        return response.build();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
