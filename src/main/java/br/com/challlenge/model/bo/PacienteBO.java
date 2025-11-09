@@ -2,7 +2,6 @@ package br.com.challlenge.model.bo;
 
 import br.com.challlenge.model.dao.PacienteDAO;
 import br.com.challlenge.model.dto.PacienteTO;
-import oracle.sql.LobPlsqlUtil;
 
 public class PacienteBO {
     private PacienteDAO pacienteDAO;
@@ -14,7 +13,7 @@ public class PacienteBO {
 
     public PacienteTO findByCode(Long codigo) {
         pacienteDAO = new PacienteDAO();
-        return pacienteDAO.findByCodigo(codigo);
+        return pacienteDAO.findByCode(codigo);
     }
 
     public PacienteTO update(PacienteTO paciente) {

@@ -1,20 +1,20 @@
 package br.com.challlenge.model.resource;
 
-import br.com.challlenge.model.bo.PacienteBO;
-import br.com.challlenge.model.dto.PacienteTO;
+import br.com.challlenge.model.bo.EnderecoBO;
+import br.com.challlenge.model.dto.EnderecoTO;
 import jakarta.validation.Valid;
 import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
-@Path("/paciente")
-public class PacienteResource {
-    private PacienteBO pacienteBO = new PacienteBO();
+@Path("/endereco")
+public class EnderecoResource {
+    private EnderecoBO enderecoBO = new EnderecoBO();
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response save(@Valid PacienteTO paciente) {
-        PacienteTO resultado = pacienteBO.save(paciente);
+    public Response save(@Valid EnderecoTO endereco) {
+        EnderecoTO resultado = enderecoBO.save(endereco);
         Response.ResponseBuilder response;
 
         if (resultado != null) {
@@ -31,7 +31,7 @@ public class PacienteResource {
     @Path("/{codigo}")
     @Produces(MediaType.APPLICATION_JSON)
     public Response findByCodigo(@PathParam("codigo") Long codigo) {
-        PacienteTO resultado = pacienteBO.findByCode(codigo);
+        EnderecoTO resultado = enderecoBO.findByCode(codigo);
         Response.ResponseBuilder response;
 
         if (resultado != null) {
@@ -47,9 +47,9 @@ public class PacienteResource {
     @PUT
     @Path("/{codigo}")
     @Consumes(MediaType.APPLICATION_JSON)
-    public Response update(@Valid PacienteTO paciente, @PathParam("codigo") Long codigo) {
-        paciente.setId(codigo);
-        PacienteTO resultado = pacienteBO.update(paciente);
+    public Response update(@Valid EnderecoTO endereco, @PathParam("codigo") Long codigo){
+        endereco.setId(codigo);
+        EnderecoTO resultado = enderecoBO.update(endereco);
         Response.ResponseBuilder response;
 
         if (resultado != null) {
@@ -61,19 +61,4 @@ public class PacienteResource {
         response.entity(resultado);
         return response.build();
     }
-
-    @DELETE
-    @Path("/{codigo}")
-    public Response delete(@PathParam("codigo") Long codigo) {
-        Response.ResponseBuilder response;
-
-        if (pacienteBO.delete(codigo)) {
-            response = Response.status(204);    // 204 (NOT CONTENT)
-        } else {
-            response = Response.status(404);    // 404 (NOT FOUND)
-        }
-
-        return response.build();
-    }
-
 }

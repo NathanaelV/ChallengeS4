@@ -1,15 +1,15 @@
 package br.com.challlenge.model.dao;
 
 import br.com.challlenge.model.dto.PacienteTO;
-import oracle.jdbc.proxy.annotation.Pre;
 
-import java.security.PublicKey;
-import java.sql.*;
+import java.sql.Date;
+import java.sql.PreparedStatement;
+import java.sql.ResultSet;
+import java.sql.SQLException;
 
 public class PacienteDAO {
     public PacienteTO save(PacienteTO paciente) {
         String sql = "insert into t_vlt_ddd_paciente (nome, data_nascimento, documento, codigo_endereco, codigo_contato) VALUES (?,?,?,?,?)";
-        Long idGerado;
 
         // new String[]{"codigo"}: Ajuda no retorno do código do paciente.
         try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql, new String[]{"codigo"})) {
@@ -40,7 +40,7 @@ public class PacienteDAO {
         return paciente;
     }
 
-    public PacienteTO findByCodigo(Long codigo) {
+    public PacienteTO findByCode(Long codigo) {
         PacienteTO paciente = new PacienteTO();
         String sql = "select * from t_vlt_ddd_paciente where codigo=?";
 

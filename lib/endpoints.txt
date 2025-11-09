@@ -14,6 +14,8 @@ Retorna:
     "codContato": 1
 }
 
+Caso ERRO:
+404 - Not Found
 
 --------------------------------------
 
@@ -120,7 +122,9 @@ DELETE: http://localhost:8080/paciente/1
 
 Retorno: 204 - No Content
 
--------------------------------------------------------
+
+
+---------------------------------------------------------------------------------
 
 CONTATO
 
@@ -177,7 +181,7 @@ Retorna:
 
 
 
--------------------------------------------------------
+---------------------------------------------------------------------------------
 
 ENDEREÇO
 
@@ -228,6 +232,40 @@ Retorna:
     "cep": "01302-000"
 }
 
+Caso de ERRO:
+
+400 - Bad Request
+
+{
+	"title": "Constraint Violation",
+	"status": 400,
+	"violations": [
+		{
+			"field": "save.endereco.logradouro",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.cep",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.bairro",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.cidade",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.estado",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.numero",
+			"message": "não deve estar em branco"
+		}
+	]
+}
 
 
 --------------------------------------
@@ -259,4 +297,41 @@ Retorna:
     "estado": "SP",
     "cep": "01302-000"
 }
+
+Caso de ERRO:
+
+400 - Bad Request
+
+{
+	"title": "Constraint Violation",
+	"status": 400,
+	"violations": [
+		{
+			"field": "save.endereco.logradouro",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.cep",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.bairro",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.cidade",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.estado",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.endereco.numero",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+
+
 
