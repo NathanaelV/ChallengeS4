@@ -1,13 +1,48 @@
 package br.com.challlenge.model.dao;
 
 import br.com.challlenge.model.dto.PacienteTO;
+import oracle.jdbc.proxy.annotation.Pre;
 
 import java.sql.Date;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.util.ArrayList;
 
 public class PacienteDAO {
+    public ArrayList<PacienteTO> findAll() {
+        ArrayList<PacienteTO> pacientes = new ArrayList<>();
+
+        String sql = "select * from t_vlt_ddd_paciente order by codigo";
+
+        try (PreparedStatement ps = ConnectionFactory.getConnection().prepareStatement(sql)) {
+            ResultSet rs = ps.executeQuery();
+
+            if (rs != null) {
+                while (rs.next()) {
+                    PacienteTO paciente = new PacienteTO();
+                    paciente.setId(rs.getLong("codigo"));
+                    paciente.setNome(rs.getString("nome"));
+                    paciente.setDataNascimento(rs.getDate("data_nascimento").toLocalDate());
+                    paciente.setDocumento(rs.getString("documento"));
+                    paciente.setCodEndereco(rs.getLong("codigo_endereco"));
+                    paciente.setCodContato(rs.getLong("codigo_contato"));
+                    pacientes.add(paciente);
+                }
+
+                return pacientes;
+            } else {
+                return null;
+            }
+        } catch (SQLException e) {
+            System.out.println("Erro na consulta: " + e.getMessage());
+        } finally {
+            ConnectionFactory.closeConnection();
+        }
+
+        return pacientes;
+    }
+
     public PacienteTO save(PacienteTO paciente) {
         String sql = "insert into t_vlt_ddd_paciente (nome, data_nascimento, documento, codigo_endereco, codigo_contato) VALUES (?,?,?,?,?)";
 

@@ -7,9 +7,27 @@ import jakarta.ws.rs.*;
 import jakarta.ws.rs.core.MediaType;
 import jakarta.ws.rs.core.Response;
 
+import java.util.ArrayList;
+
 @Path("/paciente")
 public class PacienteResource {
     private PacienteBO pacienteBO = new PacienteBO();
+
+    @GET
+    @Produces(MediaType.APPLICATION_JSON)
+    public Response findAll() {
+        ArrayList<PacienteTO> resultado = pacienteBO.findAll();
+        Response.ResponseBuilder response;
+
+        if (resultado != null) {
+            response = Response.ok();
+        } else {
+            response = Response.status(404);
+        }
+
+        response.entity(resultado);
+        return response.build();
+    }
 
     @POST
     @Consumes(MediaType.APPLICATION_JSON)
