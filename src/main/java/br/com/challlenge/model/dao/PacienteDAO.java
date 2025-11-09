@@ -37,7 +37,7 @@ public class PacienteDAO {
             ConnectionFactory.closeConnection();
         }
 
-        return paciente;
+        return null;
     }
 
     public PacienteTO findByCode(Long codigo) {

@@ -37,7 +37,7 @@ public class EnderecoDAO {
             ConnectionFactory.closeConnection();
         }
 
-        return endereco;
+        return null;
     }
     
     public EnderecoTO findByCode(Long codigo) {

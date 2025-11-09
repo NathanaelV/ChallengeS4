@@ -60,6 +60,14 @@ Caso de ERRO:
 		{
 			"field": "save.paciente.documento",
 			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.paciente.codEndereco",
+			"message": "deve ser maior que 0"
+		},
+		{
+			"field": "save.paciente.codContato",
+			"message": "deve ser maior que 0"
 		}
 	]
 }
@@ -159,6 +167,25 @@ Retorna:
     "telefone": "11912344321"
 }
 
+Em caso de ERRO
+
+400 - Bad Request
+
+{
+	"title": "Constraint Violation",
+	"status": 400,
+	"violations": [
+		{
+			"field": "save.contato.email",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.contato.telefone",
+			"message": "não deve estar em branco"
+		}
+	]
+}
+
 
 --------------------------------------
 
@@ -177,6 +204,25 @@ Retorna:
     "id": 1,
     "email": "leonardo.Hamato@tmnt.com",
     "telefone": "11912344321"
+}
+
+Em caso de ERRO
+
+400 - Bad Request
+
+{
+	"title": "Constraint Violation",
+	"status": 400,
+	"violations": [
+		{
+			"field": "save.contato.email",
+			"message": "não deve estar em branco"
+		},
+		{
+			"field": "save.contato.telefone",
+			"message": "não deve estar em branco"
+		}
+	]
 }
 
 

@@ -2,6 +2,7 @@ package br.com.challlenge.model.dto;
 
 import jakarta.validation.constraints.NotBlank;
 import jakarta.validation.constraints.Past;
+import jakarta.validation.constraints.Positive;
 
 import java.time.LocalDate;
 
@@ -13,7 +14,9 @@ public class PacienteTO {
     private LocalDate dataNascimento;
     @NotBlank
     private String documento;
+    @Positive
     private Long codEndereco;
+    @Positive
     private Long codContato;
 
     public PacienteTO() {}

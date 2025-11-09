@@ -1,8 +1,13 @@
 package br.com.challlenge.model.dto;
 
+import jakarta.validation.Valid;
+import jakarta.validation.constraints.NotBlank;
+
 public class ContatoTO {
     private Long id;
+    @NotBlank
     private String email;
+    @NotBlank
     private String telefone;
 
     public ContatoTO() {}
